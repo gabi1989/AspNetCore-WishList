@@ -33,8 +33,6 @@ namespace WishList
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
             app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
