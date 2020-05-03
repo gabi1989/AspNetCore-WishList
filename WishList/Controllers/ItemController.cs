@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
 using WishList.Models;
 
-namespace WishList.Controller
+namespace WishList.Controllers
 {
     public class ItemController : Microsoft.AspNetCore.Mvc.Controller
     {
@@ -34,19 +34,12 @@ namespace WishList.Controller
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int id)
         {
-            var item = _context.Items.SingleOrDefault(i => i.Id == Id);
-            if (item != null)
-            {
-                _context.Items.Remove(item);
-                _context.SaveChanges();
-               return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("Error", "Home");
-            }
+            var item = _context.Items.FirstOrDefault(i => i.Id == id);
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
